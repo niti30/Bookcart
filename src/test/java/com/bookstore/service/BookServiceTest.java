@@ -20,6 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.lenient;
 
 /**
  * Test class for BookService
@@ -277,7 +278,9 @@ public class BookServiceTest {
                 .build();
 
         when(bookRepository.findById(99L)).thenReturn(Optional.empty());
-        when(bookRepository.findByIsbn("5555555555")).thenReturn(Optional.empty());
+        // Only mock findByIsbn if the service implementation actually calls it
+        // This will be used if the service checks for ISBN uniqueness
+        lenient().when(bookRepository.findByIsbn("5555555555")).thenReturn(Optional.empty());
         when(bookRepository.save(any(Book.class))).thenReturn(newBook);
 
         // when
