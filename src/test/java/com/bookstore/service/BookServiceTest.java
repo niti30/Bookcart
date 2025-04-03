@@ -3,6 +3,7 @@ package com.bookstore.service;
 import com.bookstore.exception.ResourceNotFoundException;
 import com.bookstore.model.Book;
 import com.bookstore.repository.BookRepository;
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +31,9 @@ public class BookServiceTest {
 
     @Mock
     private BookRepository bookRepository;
+    
+    @Mock
+    private EntityManager entityManager;
 
     @InjectMocks
     private BookServiceImpl bookService;
@@ -278,10 +282,14 @@ public class BookServiceTest {
                 .build();
 
         when(bookRepository.findById(99L)).thenReturn(Optional.empty());
+        // Mock existsById to return false (book doesn't exist)
+        when(bookRepository.existsById(99L)).thenReturn(false);
         // Only mock findByIsbn if the service implementation actually calls it
         // This will be used if the service checks for ISBN uniqueness
         lenient().when(bookRepository.findByIsbn("5555555555")).thenReturn(Optional.empty());
-        when(bookRepository.save(any(Book.class))).thenReturn(newBook);
+        
+        // Mock EntityManager merge method to return the book with the ID preserved
+        when(entityManager.merge(any(Book.class))).thenReturn(newBook);
 
         // when
         Book result = bookService.updateBook(99L, updatedDetails);
@@ -291,7 +299,9 @@ public class BookServiceTest {
         assertThat(result.getId()).isEqualTo(99L);
         assertThat(result.getTitle()).isEqualTo("New Title");
         verify(bookRepository, times(1)).findById(99L);
-        verify(bookRepository, times(1)).save(any(Book.class));
+        verify(bookRepository, times(1)).existsById(99L);
+        verify(entityManager, times(1)).merge(any(Book.class));
+        verify(entityManager, times(1)).flush();
     }
 
     @Test

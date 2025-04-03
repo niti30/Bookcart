@@ -3,6 +3,8 @@ package com.bookstore.service;
 import com.bookstore.exception.ResourceNotFoundException;
 import com.bookstore.model.Book;
 import com.bookstore.repository.BookRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,9 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
+    
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Autowired
     public BookServiceImpl(BookRepository bookRepository) {
@@ -62,8 +67,13 @@ public class BookServiceImpl implements BookService {
         } catch (ResourceNotFoundException e) {
             // If book doesn't exist, create a new one with the specified ID
             book = new Book();
-            book.setId(id);
+            book.setId(id); // Explicitly set the ID to the requested ID
             isNewBook = true;
+            
+            // Check if a book with this ID already exists (safety check)
+            if (bookRepository.existsById(id)) {
+                throw new IllegalArgumentException("Book with ID " + id + " already exists");
+            }
         }
         
         // Always check ISBN uniqueness when ISBN is provided, but handle differently for new vs existing books
@@ -90,7 +100,29 @@ public class BookServiceImpl implements BookService {
         book.setPublisher(bookDetails.getPublisher());
         book.setGenre(bookDetails.getGenre());
         
-        return bookRepository.save(book);
+        // Special handling for new books with pre-assigned IDs
+        if (isNewBook) {
+            // For new books with manual IDs, we need a specialized approach
+            // First check that no book with this ID exists
+            if (bookRepository.existsById(id)) {
+                throw new IllegalArgumentException("Cannot create book with ID " + id + " as it already exists");
+            }
+            
+            // Using the EntityManager directly to merge the entity with its ID
+            // This approach preserves the manually assigned ID
+            book = entityManager.merge(book);
+            entityManager.flush(); // Ensure the entity is persisted immediately
+            
+            // Verify the ID was preserved
+            if (!book.getId().equals(id)) {
+                throw new IllegalStateException("Failed to preserve requested ID " + id + " when creating new book");
+            }
+            
+            return book;
+        } else {
+            // Normal update for existing books
+            return bookRepository.save(book);
+        }
     }
 
     @Override

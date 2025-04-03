@@ -9,13 +9,15 @@
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ bookstore-api ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 8 source files with javac [debug release 17] to target/classes
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ bookstore-api ---
 [INFO] skip non existing resourceDirectory /Users/nitish/Desktop/BookstoreManager/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ bookstore-api ---
-[INFO] Nothing to compile - all classes are up to date
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 4 source files with javac [debug release 17] to target/test-classes
 [INFO] 
 [INFO] --- surefire:3.0.0:test (default-test) @ bookstore-api ---
 [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
@@ -24,8 +26,8 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running com.bookstore.repository.BookRepositoryTest
-13:38:37.274 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bookstore.repository.BookRepositoryTest]: BookRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-13:38:37.335 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.repository.BookRepositoryTest
+14:17:04.381 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.bookstore.repository.BookRepositoryTest]: BookRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:17:04.436 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.repository.BookRepositoryTest
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -33,18 +35,18 @@
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.5)
-2025-04-03T13:38:37.509+05:30  INFO 80928 --- [           main] c.b.repository.BookRepositoryTest        : Starting BookRepositoryTest using Java 23.0.2 with PID 80928 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
-2025-04-03T13:38:37.509+05:30  INFO 80928 --- [           main] c.b.repository.BookRepositoryTest        : No active profile set, falling back to 1 default profile: "default"
-2025-04-03T13:38:37.706+05:30  INFO 80928 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-03T13:38:37.734+05:30  INFO 80928 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 1 JPA repository interfaces.
-2025-04-03T13:38:37.757+05:30  INFO 80928 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
-2025-04-03T13:38:37.833+05:30  INFO 80928 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:93ca025d-277a-4a19-a8f8-7570056b8281;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
-2025-04-03T13:38:37.955+05:30  INFO 80928 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-03T13:38:37.978+05:30  INFO 80928 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
-2025-04-03T13:38:37.979+05:30  INFO 80928 --- [           main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
-2025-04-03T13:38:38.093+05:30  INFO 80928 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-03T13:38:38.114+05:30  WARN 80928 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-03T13:38:38.484+05:30  INFO 80928 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-03T14:17:04.580+05:30  INFO 81670 --- [           main] c.b.repository.BookRepositoryTest        : Starting BookRepositoryTest using Java 23.0.2 with PID 81670 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
+2025-04-03T14:17:04.580+05:30  INFO 81670 --- [           main] c.b.repository.BookRepositoryTest        : No active profile set, falling back to 1 default profile: "default"
+2025-04-03T14:17:04.736+05:30  INFO 81670 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-03T14:17:04.763+05:30  INFO 81670 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 23 ms. Found 1 JPA repository interfaces.
+2025-04-03T14:17:04.790+05:30  INFO 81670 --- [           main] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2025-04-03T14:17:04.874+05:30  INFO 81670 --- [           main] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:f1cb28c1-86d1-4fec-8fe3-f0f1a6d46c74;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-04-03T14:17:04.994+05:30  INFO 81670 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-03T14:17:05.019+05:30  INFO 81670 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.13.Final
+2025-04-03T14:17:05.020+05:30  INFO 81670 --- [           main] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2025-04-03T14:17:05.144+05:30  INFO 81670 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-03T14:17:05.166+05:30  WARN 81670 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-03T14:17:05.528+05:30  INFO 81670 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     create table books (
         id bigint generated by default as identity,
@@ -65,13 +67,13 @@ Hibernate:
 Hibernate: 
     alter table if exists books 
        add constraint UK_kibbepcitr0a3cpk3rfr7nihn unique (isbn)
-2025-04-03T13:38:38.508+05:30  INFO 80928 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-03T13:38:38.705+05:30  INFO 80928 --- [           main] c.b.repository.BookRepositoryTest        : Started BookRepositoryTest in 1.334 seconds (process running for 1.799)
-OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2025-04-03T14:17:05.553+05:30  INFO 81670 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-03T14:17:05.756+05:30  INFO 81670 --- [           main] c.b.repository.BookRepositoryTest        : Started BookRepositoryTest in 1.294 seconds (process running for 1.721)
 WARNING: A Java agent has been loaded dynamically (/Users/nitish/.m2/repository/net/bytebuddy/byte-buddy-agent/1.14.9/byte-buddy-agent-1.14.9.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
 Hibernate: 
     insert 
     into
@@ -201,10 +203,10 @@ Hibernate:
         books b1_0 
     where
         b1_0.genre=?
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.938 s - in com.bookstore.repository.BookRepositoryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.905 s - in com.bookstore.repository.BookRepositoryTest
 [INFO] Running com.bookstore.controller.BookControllerTest
-2025-04-03T13:38:39.137+05:30  INFO 80928 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bookstore.controller.BookControllerTest]: BookControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-04-03T13:38:39.147+05:30  INFO 80928 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.controller.BookControllerTest
+2025-04-03T14:17:06.214+05:30  INFO 81670 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bookstore.controller.BookControllerTest]: BookControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-03T14:17:06.224+05:30  INFO 81670 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.controller.BookControllerTest
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -212,31 +214,39 @@ Hibernate:
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.5)
-2025-04-03T13:38:39.168+05:30  INFO 80928 --- [           main] c.b.controller.BookControllerTest        : Starting BookControllerTest using Java 23.0.2 with PID 80928 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
-2025-04-03T13:38:39.168+05:30  INFO 80928 --- [           main] c.b.controller.BookControllerTest        : No active profile set, falling back to 1 default profile: "default"
-2025-04-03T13:38:39.501+05:30  INFO 80928 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
-2025-04-03T13:38:39.501+05:30  INFO 80928 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
-2025-04-03T13:38:39.502+05:30  INFO 80928 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
-2025-04-03T13:38:39.506+05:30  INFO 80928 --- [           main] c.b.controller.BookControllerTest        : Started BookControllerTest in 0.353 seconds (process running for 2.601)
-[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.497 s - in com.bookstore.controller.BookControllerTest
+2025-04-03T14:17:06.245+05:30  INFO 81670 --- [           main] c.b.controller.BookControllerTest        : Starting BookControllerTest using Java 23.0.2 with PID 81670 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
+2025-04-03T14:17:06.245+05:30  INFO 81670 --- [           main] c.b.controller.BookControllerTest        : No active profile set, falling back to 1 default profile: "default"
+2025-04-03T14:17:06.552+05:30  INFO 81670 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-04-03T14:17:06.552+05:30  INFO 81670 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-04-03T14:17:06.553+05:30  INFO 81670 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2025-04-03T14:17:06.557+05:30  INFO 81670 --- [           main] c.b.controller.BookControllerTest        : Started BookControllerTest in 0.326 seconds (process running for 2.522)
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.468 s - in com.bookstore.controller.BookControllerTest
 [INFO] Running com.bookstore.service.BookServiceTest
-[ERROR] Tests run: 14, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.085 s <<< FAILURE! - in com.bookstore.service.BookServiceTest
-[ERROR] com.bookstore.service.BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist  Time elapsed: 0.004 s  <<< ERROR!
-org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
-Unnecessary stubbings detected.
-Clean & maintainable test code requires zero unnecessary code.
-Following stubbings are unnecessary (click to navigate to relevant line of code):
-  1. -> at com.bookstore.service.BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist(BookServiceTest.java:280)
-Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
-	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:186)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAfterEachCallbacks$12(TestMethodTestDescriptor.java:260)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$13(TestMethodTestDescriptor.java:276)
+[ERROR] Tests run: 14, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.082 s <<< FAILURE! - in com.bookstore.service.BookServiceTest
+[ERROR] com.bookstore.service.BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist  Time elapsed: 0.001 s  <<< ERROR!
+java.lang.NullPointerException: Cannot invoke "jakarta.persistence.EntityManager.merge(Object)" because "this.entityManager" is null
+	at com.bookstore.service.BookServiceImpl.updateBook(BookServiceImpl.java:113)
+	at com.bookstore.service.BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist(BookServiceTest.java:287)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:727)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:147)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$7(TestMethodTestDescriptor.java:217)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeAllAfterMethodsOrCallbacks$14(TestMethodTestDescriptor.java:276)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAllAfterMethodsOrCallbacks(TestMethodTestDescriptor.java:275)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeAfterEachCallbacks(TestMethodTestDescriptor.java:259)
-	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:144)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:213)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:138)
 	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:68)
 	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:151)
 	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
@@ -287,8 +297,8 @@ Please remove unnecessary stubbings or use 'lenient' strictness. More info: java
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
 [INFO] Running com.bookstore.BookstoreApplicationTests
-2025-04-03T13:38:39.719+05:30  INFO 80928 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bookstore.BookstoreApplicationTests]: BookstoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2025-04-03T13:38:39.721+05:30  INFO 80928 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.BookstoreApplicationTests
+2025-04-03T14:17:06.763+05:30  INFO 81670 --- [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.bookstore.BookstoreApplicationTests]: BookstoreApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-04-03T14:17:06.766+05:30  INFO 81670 --- [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.bookstore.BookstoreApplication for test class com.bookstore.BookstoreApplicationTests
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -296,17 +306,17 @@ Please remove unnecessary stubbings or use 'lenient' strictness. More info: java
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::                (v3.1.5)
-2025-04-03T13:38:39.734+05:30  INFO 80928 --- [           main] c.bookstore.BookstoreApplicationTests    : Starting BookstoreApplicationTests using Java 23.0.2 with PID 80928 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
-2025-04-03T13:38:39.734+05:30  INFO 80928 --- [           main] c.bookstore.BookstoreApplicationTests    : No active profile set, falling back to 1 default profile: "default"
-2025-04-03T13:38:39.853+05:30  INFO 80928 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-04-03T13:38:39.856+05:30  INFO 80928 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 1 JPA repository interfaces.
-2025-04-03T13:38:39.905+05:30  INFO 80928 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-04-03T13:38:39.907+05:30  INFO 80928 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-04-03T13:38:39.907+05:30  INFO 80928 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-04-03T13:38:39.913+05:30  INFO 80928 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:bookstoredb user=SA
-2025-04-03T13:38:39.914+05:30  INFO 80928 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-04-03T13:38:39.916+05:30  WARN 80928 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-04-03T13:38:39.939+05:30  INFO 80928 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-03T14:17:06.789+05:30  INFO 81670 --- [           main] c.bookstore.BookstoreApplicationTests    : Starting BookstoreApplicationTests using Java 23.0.2 with PID 81670 (started by nitish in /Users/nitish/Desktop/BookstoreManager)
+2025-04-03T14:17:06.789+05:30  INFO 81670 --- [           main] c.bookstore.BookstoreApplicationTests    : No active profile set, falling back to 1 default profile: "default"
+2025-04-03T14:17:06.897+05:30  INFO 81670 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-03T14:17:06.900+05:30  INFO 81670 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 3 ms. Found 1 JPA repository interfaces.
+2025-04-03T14:17:06.946+05:30  INFO 81670 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-03T14:17:06.948+05:30  INFO 81670 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-03T14:17:06.948+05:30  INFO 81670 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-04-03T14:17:06.953+05:30  INFO 81670 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn9: url=jdbc:h2:mem:bookstoredb user=SA
+2025-04-03T14:17:06.954+05:30  INFO 81670 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-04-03T14:17:06.956+05:30  WARN 81670 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-03T14:17:06.974+05:30  INFO 81670 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
 Hibernate: 
     create table books (
         id bigint generated by default as identity,
@@ -327,21 +337,16 @@ Hibernate:
 Hibernate: 
     alter table if exists books 
        add constraint UK_kibbepcitr0a3cpk3rfr7nihn unique (isbn)
-2025-04-03T13:38:39.946+05:30  INFO 80928 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-04-03T13:38:40.077+05:30  WARN 80928 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-04-03T13:38:40.144+05:30  INFO 80928 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookstoredb'
-2025-04-03T13:38:40.162+05:30  INFO 80928 --- [           main] c.bookstore.BookstoreApplicationTests    : Started BookstoreApplicationTests in 0.438 seconds (process running for 3.257)
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.447 s - in com.bookstore.BookstoreApplicationTests
+2025-04-03T14:17:06.980+05:30  INFO 81670 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-03T14:17:07.123+05:30  WARN 81670 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-03T14:17:07.186+05:30  INFO 81670 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:bookstoredb'
+2025-04-03T14:17:07.205+05:30  INFO 81670 --- [           main] c.bookstore.BookstoreApplicationTests    : Started BookstoreApplicationTests in 0.434 seconds (process running for 3.17)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.444 s - in com.bookstore.BookstoreApplicationTests
 [INFO] 
 [INFO] Results:
 [INFO] 
 [ERROR] Errors: 
-[ERROR]   BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist » UnnecessaryStubbing 
-Unnecessary stubbings detected.
-Clean & maintainable test code requires zero unnecessary code.
-Following stubbings are unnecessary (click to navigate to relevant line of code):
-  1. -> at com.bookstore.service.BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist(BookServiceTest.java:280)
-Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+[ERROR]   BookServiceTest.updateBook_ShouldCreateNewBook_WhenBookDoesNotExist:287 » NullPointer Cannot invoke "jakarta.persistence.EntityManager.merge(Object)" because "this.entityManager" is null
 [INFO] 
 [ERROR] Tests run: 29, Failures: 0, Errors: 1, Skipped: 0
 [INFO] 

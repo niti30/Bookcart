@@ -27,6 +27,7 @@ import java.time.LocalDate;
 public class Book {
 
     @Id
+    // Only auto-generate IDs for new entities when no ID is specified
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
