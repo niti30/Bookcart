@@ -1,0 +1,45 @@
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ bookstore-api ---
+[INFO] Changes detected - recompiling the module! :dependency
+[INFO] Compiling 4 source files with javac [debug release 17] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[42,21] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[55,21] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[143,28] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[155,30] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[185,28] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[210,35] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[222,32] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/service/BookServiceTest.java:[254,35] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/repository/BookRepositoryTest.java:[105,20] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/repository/BookRepositoryTest.java:[122,20] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/controller/BookControllerTest.java:[47,21] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[ERROR] /Users/nitish/Desktop/BookstoreManager/src/test/java/com/bookstore/controller/BookControllerTest.java:[60,21] cannot find symbol
+  symbol:   method builder()
+  location: class com.bookstore.model.Book
+[INFO] 12 errors 
+[INFO] -------------------------------------------------------------

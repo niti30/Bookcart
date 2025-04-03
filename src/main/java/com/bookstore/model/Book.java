@@ -100,4 +100,165 @@ public class Book {
         TECHNOLOGY,
         OTHER
     }
+    
+    // Manually added getter and setter methods to work around Lombok issues
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Integer getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+    
+    // Manual implementation of builder for Lombok @Builder
+    public static BookBuilder builder() {
+        return new BookBuilder();
+    }
+    
+    public static class BookBuilder {
+        private Long id;
+        private String title;
+        private String author;
+        private String isbn;
+        private LocalDate publicationDate;
+        private BigDecimal price;
+        private String description;
+        private Integer pageCount;
+        private String publisher;
+        private Genre genre;
+        
+        BookBuilder() {
+        }
+        
+        public BookBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        
+        public BookBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+        
+        public BookBuilder author(String author) {
+            this.author = author;
+            return this;
+        }
+        
+        public BookBuilder isbn(String isbn) {
+            this.isbn = isbn;
+            return this;
+        }
+        
+        public BookBuilder publicationDate(LocalDate publicationDate) {
+            this.publicationDate = publicationDate;
+            return this;
+        }
+        
+        public BookBuilder price(BigDecimal price) {
+            this.price = price;
+            return this;
+        }
+        
+        public BookBuilder description(String description) {
+            this.description = description;
+            return this;
+        }
+        
+        public BookBuilder pageCount(Integer pageCount) {
+            this.pageCount = pageCount;
+            return this;
+        }
+        
+        public BookBuilder publisher(String publisher) {
+            this.publisher = publisher;
+            return this;
+        }
+        
+        public BookBuilder genre(Genre genre) {
+            this.genre = genre;
+            return this;
+        }
+        
+        public Book build() {
+            return new Book(id, title, author, isbn, publicationDate, price, description, pageCount, publisher, genre);
+        }
+        
+        public String toString() {
+            return "Book.BookBuilder(id=" + this.id + ", title=" + this.title + ", author=" + this.author + ", isbn=" + this.isbn + ", publicationDate=" + this.publicationDate + ", price=" + this.price + ", description=" + this.description + ", pageCount=" + this.pageCount + ", publisher=" + this.publisher + ", genre=" + this.genre + ")";
+        }
+    }
 }
