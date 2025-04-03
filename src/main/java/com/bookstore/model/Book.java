@@ -19,10 +19,11 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "books")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+// Removed Lombok annotations and replaced with manual implementations
+// @Data
+// @NoArgsConstructor
+// @AllArgsConstructor
+// @Builder
 public class Book {
 
     @Id
@@ -99,6 +100,27 @@ public class Book {
         REFERENCE,
         TECHNOLOGY,
         OTHER
+    }
+    
+    // Constructor implementations to replace Lombok annotations
+    
+    // No-args constructor
+    public Book() {
+    }
+    
+    // All-args constructor
+    public Book(Long id, String title, String author, String isbn, LocalDate publicationDate, 
+                BigDecimal price, String description, Integer pageCount, String publisher, Genre genre) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.publicationDate = publicationDate;
+        this.price = price;
+        this.description = description;
+        this.pageCount = pageCount;
+        this.publisher = publisher;
+        this.genre = genre;
     }
     
     // Manually added getter and setter methods to work around Lombok issues
@@ -254,7 +276,18 @@ public class Book {
         }
         
         public Book build() {
-            return new Book(id, title, author, isbn, publicationDate, price, description, pageCount, publisher, genre);
+            Book book = new Book();
+            book.setId(id);
+            book.setTitle(title);
+            book.setAuthor(author);
+            book.setIsbn(isbn);
+            book.setPublicationDate(publicationDate);
+            book.setPrice(price);
+            book.setDescription(description);
+            book.setPageCount(pageCount);
+            book.setPublisher(publisher);
+            book.setGenre(genre);
+            return book;
         }
         
         public String toString() {
