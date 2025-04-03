@@ -66,14 +66,17 @@ public class BookServiceImpl implements BookService {
             isNewBook = true;
         }
         
-        // Check ISBN uniqueness - only if book exists or if ISBN is provided for new book
-        if (bookDetails.getIsbn() != null && (!isNewBook || book.getIsbn() != null) && 
-            (isNewBook || !book.getIsbn().equals(bookDetails.getIsbn()))) {
-            bookRepository.findByIsbn(bookDetails.getIsbn()).ifPresent(existingBook -> {
-                if (!existingBook.getId().equals(id)) {
-                    throw new IllegalArgumentException("Book with ISBN " + bookDetails.getIsbn() + " already exists");
-                }
-            });
+        // Always check ISBN uniqueness when ISBN is provided, but handle differently for new vs existing books
+        if (bookDetails.getIsbn() != null) {
+            // If this is a new book or we're changing the ISBN of an existing book
+            if (isNewBook || book.getIsbn() == null || !bookDetails.getIsbn().equals(book.getIsbn())) {
+                bookRepository.findByIsbn(bookDetails.getIsbn()).ifPresent(existingBook -> {
+                    // Only throw if the existing book with this ISBN is different from the one we're updating
+                    if (!existingBook.getId().equals(id)) {
+                        throw new IllegalArgumentException("Book with ISBN " + bookDetails.getIsbn() + " already exists");
+                    }
+                });
+            }
         }
         
         // Update book fields
