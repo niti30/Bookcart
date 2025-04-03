@@ -53,10 +53,22 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public Book updateBook(Long id, Book bookDetails) {
-        Book book = getBookById(id);
+        Book book;
+        boolean isNewBook = false;
         
-        // If ISBN is changing, check it's not already used by another book
-        if (!book.getIsbn().equals(bookDetails.getIsbn())) {
+        try {
+            // Try to find the book first
+            book = getBookById(id);
+        } catch (ResourceNotFoundException e) {
+            // If book doesn't exist, create a new one with the specified ID
+            book = new Book();
+            book.setId(id);
+            isNewBook = true;
+        }
+        
+        // Check ISBN uniqueness - only if book exists or if ISBN is provided for new book
+        if (bookDetails.getIsbn() != null && (!isNewBook || book.getIsbn() != null) && 
+            (isNewBook || !book.getIsbn().equals(bookDetails.getIsbn()))) {
             bookRepository.findByIsbn(bookDetails.getIsbn()).ifPresent(existingBook -> {
                 if (!existingBook.getId().equals(id)) {
                     throw new IllegalArgumentException("Book with ISBN " + bookDetails.getIsbn() + " already exists");

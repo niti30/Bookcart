@@ -43,12 +43,11 @@ public interface BookService {
     Book createBook(Book book);
     
     /**
-     * Update an existing book
+     * Update an existing book or create it if it doesn't exist
      * 
-     * @param id The ID of the book to update
+     * @param id The ID of the book to update or create
      * @param bookDetails The new book details
-     * @return The updated book
-     * @throws com.bookstore.exception.ResourceNotFoundException if no book with the given ID exists
+     * @return The updated or created book
      */
     Book updateBook(Long id, Book bookDetails);
     

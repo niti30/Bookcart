@@ -1,5 +1,6 @@
 package com.bookstore.controller;
 
+import com.bookstore.exception.ResourceNotFoundException;
 import com.bookstore.model.Book;
 import com.bookstore.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -79,17 +80,29 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update a book", description = "Update an existing book's information")
+    @Operation(summary = "Update a book", description = "Update an existing book's information or create it with the specified ID")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Book successfully updated"),
-        @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content),
-        @ApiResponse(responseCode = "404", description = "Book not found with the given ID", content = @Content)
+        @ApiResponse(responseCode = "201", description = "Book successfully created with specified ID"),
+        @ApiResponse(responseCode = "400", description = "Invalid input data", content = @Content)
     })
     public ResponseEntity<Book> updateBook(
-            @Parameter(description = "ID of the book to update") @PathVariable Long id,
-            @Parameter(description = "Updated book details") @Valid @RequestBody Book bookDetails) {
+            @Parameter(description = "ID of the book to update or create") @PathVariable Long id,
+            @Parameter(description = "Book details") @Valid @RequestBody Book bookDetails) {
+        boolean bookExists = true;
+        try {
+            bookService.getBookById(id);
+        } catch (ResourceNotFoundException e) {
+            bookExists = false;
+        }
+        
         Book updatedBook = bookService.updateBook(id, bookDetails);
-        return ResponseEntity.ok(updatedBook);
+        
+        if (bookExists) {
+            return ResponseEntity.ok(updatedBook);
+        } else {
+            return new ResponseEntity<>(updatedBook, HttpStatus.CREATED);
+        }
     }
 
     @DeleteMapping("/{id}")
