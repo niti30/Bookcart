@@ -1,0 +1,41 @@
+2025-04-03T11:31:31.320+05:30  INFO 79144 --- [           main] c.bookstore.BookstoreApplicationTests    : Started BookstoreApplicationTests in 0.498 seconds (process running for 3.456)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.51 s - in com.bookstore.BookstoreApplicationTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   BookRepositoryTest.findByGenre_ShouldReturnBooks_WhenGenreMatches:97 
+Expected size: 1 but was: 8 in:
+[com.bookstore.model.Book@3da55998,
+    com.bookstore.model.Book@40ebb56,
+    com.bookstore.model.Book@5b2fc2c0,
+    com.bookstore.model.Book@33197c2f,
+    com.bookstore.model.Book@24e79a4d,
+    com.bookstore.model.Book@5542418c,
+    com.bookstore.model.Book@705eb026,
+    com.bookstore.model.Book@12051d38]
+[ERROR]   BookRepositoryTest.findByTitleContainingIgnoreCase_ShouldReturnBooks_WhenTitleMatches:81 
+Expected size: 2 but was: 3 in:
+[com.bookstore.model.Book@3b663112,
+    com.bookstore.model.Book@1f1c7fde,
+    com.bookstore.model.Book@515fff35]
+[INFO] 
+[ERROR] Tests run: 29, Failures: 2, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  5.362 s
+[INFO] Finished at: 2025-04-03T11:31:31+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.0.0:test (default-test) on project bookstore-api: There are test failures.
+[ERROR] 
+[ERROR] Please refer to /Users/nitish/Desktop/BookstoreManager/target/surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
