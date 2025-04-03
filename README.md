@@ -1,103 +1,160 @@
 # Bookstore RESTful API
 
-A Java-based RESTful API for a bookstore with CRUD operations, H2 database, and comprehensive testing.
+A comprehensive RESTful API for a bookstore that provides complete CRUD operations for book resources. The application includes a database with approximately 50 sample book entries.
 
 ## Features
 
-- Complete CRUD operations for book resources
-- Search functionality by title, author, and genre
-- H2 in-memory database with 50 sample book entries
-- Comprehensive test suite
-- Spring Boot 3 with Java 17
-- Swagger UI for API documentation
-- Lombok for reducing boilerplate code
-
-## Tech Stack
-
-- Java 17
-- Spring Boot 3.1.5
-- Spring Data JPA
-- H2 Database
-- Maven
-- JUnit 5
-- Swagger/OpenAPI 3
-
-## Project Structure
-
-```
-├── src
-│   ├── main
-│   │   ├── java
-│   │   │   └── com
-│   │   │       └── bookstore
-│   │   │           ├── controller
-│   │   │           │   └── BookController.java
-│   │   │           ├── exception
-│   │   │           │   ├── GlobalExceptionHandler.java
-│   │   │           │   └── ResourceNotFoundException.java
-│   │   │           ├── model
-│   │   │           │   └── Book.java
-│   │   │           ├── repository
-│   │   │           │   └── BookRepository.java
-│   │   │           ├── service
-│   │   │           │   ├── BookService.java
-│   │   │           │   └── BookServiceImpl.java
-│   │   │           └── BookstoreApplication.java
-│   │   └── resources
-│   │       ├── application.properties
-│   │       └── data.sql
-│   └── test
-│       └── java
-│           └── com
-│               └── bookstore
-│                   ├── controller
-│                   │   └── BookControllerTest.java
-│                   ├── repository
-│                   │   └── BookRepositoryTest.java
-│                   ├── service
-│                   │   └── BookServiceTest.java
-│                   └── BookstoreApplicationTests.java
-```
+- **Complete CRUD Operations**: Create, read, update, and delete book resources.
+- **REST Architecture**: Follows REST principles for API design.
+- **Rich Database**: Pre-populated with ~50 literary classics.
+- **JSON Responses**: All API responses are in JSON format.
+- **Input Validation**: Proper validation of all input data.
+- **Error Handling**: Comprehensive error handling for all API endpoints.
+- **Documentation**: Well-documented API with examples.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET    | /api/books | Get all books |
-| GET    | /api/books/{id} | Get book by ID |
-| GET    | /api/books/isbn/{isbn} | Get book by ISBN |
-| POST   | /api/books | Create a new book |
-| PUT    | /api/books/{id} | Update a book |
-| DELETE | /api/books/{id} | Delete a book |
-| GET    | /api/books/search/author?author={author} | Find books by author |
-| GET    | /api/books/search/title?title={title} | Find books by title |
-| GET    | /api/books/search/genre?genre={genre} | Find books by genre |
+### Retrieve All Books
+```
+GET /api/books
+```
+Returns a list of all books in the database.
 
-## Running Locally
+### Retrieve a Specific Book
+```
+GET /api/books/{id}
+```
+Returns a specific book by its ID.
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/bookstore-api.git
+### Create a New Book
+```
+POST /api/books
+```
+Creates a new book entry. Required fields:
+- `title`: Book title
+- `author`: Book author
+- `isbn`: ISBN number (unique)
+- `price`: Book price
+
+Optional fields:
+- `publisher`: Publisher name
+- `publication_year`: Year of publication
+- `description`: Book description
+- `genre`: Book genre
+- `language`: Book language (defaults to "English")
+- `page_count`: Number of pages
+- `in_stock`: Availability status (defaults to true)
+
+### Update a Book
+```
+PUT /api/books/{id}
+```
+Updates an existing book entry. Include only the fields you want to update.
+
+### Delete a Book
+```
+DELETE /api/books/{id}
+```
+Deletes a book entry.
+
+## Book Model
+
+The book model includes the following fields:
+
+- `id`: Integer (Primary Key)
+- `title`: String (Required)
+- `author`: String (Required)
+- `isbn`: String (Required, Unique)
+- `publisher`: String
+- `publication_year`: Integer
+- `price`: Float (Required)
+- `description`: Text
+- `genre`: String
+- `language`: String (Default: "English")
+- `page_count`: Integer
+- `in_stock`: Boolean (Default: true)
+
+## Getting Started
+
+### Prerequisites
+- Python 3.7+
+- Flask
+- Flask-SQLAlchemy
+- PostgreSQL (or the database of your choice)
+
+### Installation
+
+1. Clone the repository:
+```
+git clone https://github.com/your-username/bookstore-api.git
 cd bookstore-api
-
-# Run the application with Maven Wrapper
-./mvnw spring-boot:run
 ```
 
-The API will be available at `http://localhost:8000`
-
-- Swagger UI: http://localhost:8000/swagger-ui
-- H2 Console: http://localhost:8000/h2-console
-  - JDBC URL: jdbc:h2:mem:bookstoredb
-  - Username: sa
-  - Password: password
-
-## Running Tests
-
-```bash
-./mvnw test
+2. Install dependencies:
+```
+pip install -r requirements.txt
 ```
 
-## Sample Book Data
+3. Set the environment variables:
+```
+export DATABASE_URL=your_database_url
+```
 
-The application includes 50 sample books across various genres in the `data.sql` file, which is automatically loaded when the application starts.
+4. Run the application:
+```
+python main.py
+```
+
+The API will be running at `http://localhost:5000`.
+
+## Testing the API
+
+You can test the API using curl or Postman:
+
+### Get all books:
+```
+curl -X GET http://localhost:5000/api/books
+```
+
+### Get a specific book:
+```
+curl -X GET http://localhost:5000/api/books/1
+```
+
+### Create a new book:
+```
+curl -X POST http://localhost:5000/api/books \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "New Book",
+    "author": "New Author",
+    "isbn": "9781234567890",
+    "price": 19.99,
+    "publisher": "New Publisher",
+    "publication_year": 2023,
+    "description": "A great new book.",
+    "genre": "Fiction",
+    "language": "English",
+    "page_count": 300,
+    "in_stock": true
+  }'
+```
+
+### Update a book:
+```
+curl -X PUT http://localhost:5000/api/books/1 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "price": 24.99,
+    "in_stock": false
+  }'
+```
+
+### Delete a book:
+```
+curl -X DELETE http://localhost:5000/api/books/1
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
