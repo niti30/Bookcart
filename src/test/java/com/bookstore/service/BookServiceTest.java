@@ -249,28 +249,46 @@ public class BookServiceTest {
     }
 
     @Test
-    void updateBook_ShouldThrowException_WhenBookDoesNotExist() {
+    void updateBook_ShouldCreateNewBook_WhenBookDoesNotExist() {
         // given
         Book updatedDetails = Book.builder()
-                .title("Updated Title")
-                .author("Updated Author")
-                .isbn("1234567890")
+                .title("New Title")
+                .author("New Author")
+                .isbn("5555555555")  // New ISBN that doesn't exist
                 .publicationDate(LocalDate.of(2022, 10, 10))
                 .price(new BigDecimal("49.99"))
-                .description("Updated description")
+                .description("New description")
                 .pageCount(250)
-                .publisher("Updated Publisher")
+                .publisher("New Publisher")
+                .genre(Book.Genre.MYSTERY)
+                .build();
+
+        Book newBook = Book.builder()
+                .id(99L)
+                .title("New Title")
+                .author("New Author")
+                .isbn("5555555555")
+                .publicationDate(LocalDate.of(2022, 10, 10))
+                .price(new BigDecimal("49.99"))
+                .description("New description")
+                .pageCount(250)
+                .publisher("New Publisher")
                 .genre(Book.Genre.MYSTERY)
                 .build();
 
         when(bookRepository.findById(99L)).thenReturn(Optional.empty());
+        when(bookRepository.findByIsbn("5555555555")).thenReturn(Optional.empty());
+        when(bookRepository.save(any(Book.class))).thenReturn(newBook);
 
-        // when & then
-        assertThrows(ResourceNotFoundException.class, () -> {
-            bookService.updateBook(99L, updatedDetails);
-        });
+        // when
+        Book result = bookService.updateBook(99L, updatedDetails);
+
+        // then
+        assertThat(result).isNotNull();
+        assertThat(result.getId()).isEqualTo(99L);
+        assertThat(result.getTitle()).isEqualTo("New Title");
         verify(bookRepository, times(1)).findById(99L);
-        verify(bookRepository, never()).save(any(Book.class));
+        verify(bookRepository, times(1)).save(any(Book.class));
     }
 
     @Test
