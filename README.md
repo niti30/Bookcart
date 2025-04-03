@@ -4,51 +4,100 @@ A Java-based RESTful API for a bookstore with CRUD operations, H2 database, and 
 
 ## Features
 
-- Complete RESTful API for book management
-- CRUD operations (Create, Read, Update, Delete)
-- Ability to fetch a single book or a list of books
-- Search functionality by author, title, and genre
-- In-memory H2 database
-- 50 sample book records
-- Comprehensive test coverage
-- API documentation with Swagger UI
+- Complete CRUD operations for book resources
+- Search functionality by title, author, and genre
+- H2 in-memory database with 50 sample book entries
+- Comprehensive test suite
+- Spring Boot 3 with Java 17
+- Swagger UI for API documentation
+- Lombok for reducing boilerplate code
 
-## Technology Stack
+## Tech Stack
 
 - Java 17
-- Spring Boot 3.x
+- Spring Boot 3.1.5
 - Spring Data JPA
 - H2 Database
 - Maven
 - JUnit 5
-- Swagger / OpenAPI 3.0
+- Swagger/OpenAPI 3
 
-## Requirements
+## Project Structure
 
-- Java 17 or higher
-- Maven
+```
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── bookstore
+│   │   │           ├── controller
+│   │   │           │   └── BookController.java
+│   │   │           ├── exception
+│   │   │           │   ├── GlobalExceptionHandler.java
+│   │   │           │   └── ResourceNotFoundException.java
+│   │   │           ├── model
+│   │   │           │   └── Book.java
+│   │   │           ├── repository
+│   │   │           │   └── BookRepository.java
+│   │   │           ├── service
+│   │   │           │   ├── BookService.java
+│   │   │           │   └── BookServiceImpl.java
+│   │   │           └── BookstoreApplication.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── data.sql
+│   └── test
+│       └── java
+│           └── com
+│               └── bookstore
+│                   ├── controller
+│                   │   └── BookControllerTest.java
+│                   ├── repository
+│                   │   └── BookRepositoryTest.java
+│                   ├── service
+│                   │   └── BookServiceTest.java
+│                   └── BookstoreApplicationTests.java
+```
 
-## Running the Application
+## API Endpoints
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/bookstore-api.git
-   cd bookstore-api
-   ```
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | /api/books | Get all books |
+| GET    | /api/books/{id} | Get book by ID |
+| GET    | /api/books/isbn/{isbn} | Get book by ISBN |
+| POST   | /api/books | Create a new book |
+| PUT    | /api/books/{id} | Update a book |
+| DELETE | /api/books/{id} | Delete a book |
+| GET    | /api/books/search/author?author={author} | Find books by author |
+| GET    | /api/books/search/title?title={title} | Find books by title |
+| GET    | /api/books/search/genre?genre={genre} | Find books by genre |
 
-2. Build the application:
-   ```
-   mvn clean package
-   ```
+## Running Locally
 
-3. Run the application:
-   ```
-   java -jar target/bookstore-api-1.0.0.jar
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/bookstore-api.git
+cd bookstore-api
 
-   The API will start on port 8000 and can be accessed at `http://localhost:8000`.
+# Run the application with Maven Wrapper
+./mvnw spring-boot:run
+```
 
-## API Documentation
+The API will be available at `http://localhost:8000`
 
-Once the application is running, you can access the Swagger UI documentation at:
+- Swagger UI: http://localhost:8000/swagger-ui
+- H2 Console: http://localhost:8000/h2-console
+  - JDBC URL: jdbc:h2:mem:bookstoredb
+  - Username: sa
+  - Password: password
 
+## Running Tests
+
+```bash
+./mvnw test
+```
+
+## Sample Book Data
+
+The application includes 50 sample books across various genres in the `data.sql` file, which is automatically loaded when the application starts.

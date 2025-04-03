@@ -1,24 +1,15 @@
-from flask import Flask, jsonify, redirect, request, render_template_string
-import subprocess
-import os
-import requests
-import threading
-import time
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
-# Flag to track if the Java API is running
-java_api_running = False
-java_api_process = None
-
-# Template for the homepage
-HOME_TEMPLATE = '''
+# Simple HTML template with instructions
+DOCS_TEMPLATE = '''
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bookstore API</title>
+    <title>Bookstore API Documentation</title>
     <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
 </head>
 <body>
@@ -27,19 +18,25 @@ HOME_TEMPLATE = '''
         
         <div class="card mb-4">
             <div class="card-header">
-                <h2 class="card-title h5 mb-0">API Status</h2>
+                <h2 class="card-title h5 mb-0">How to Run Locally</h2>
             </div>
             <div class="card-body">
-                <p id="status-message">{{ status_message }}</p>
-                <div class="d-flex gap-2">
-                    <a href="/swagger-ui" class="btn btn-primary" target="_blank">Open Swagger UI</a>
-                    <a href="/api/books" class="btn btn-secondary" target="_blank">View All Books</a>
-                    <a href="/h2-console" class="btn btn-info" target="_blank">H2 Database Console</a>
-                </div>
+                <p>This is a RESTful API for a bookstore with complete CRUD operations. To run it locally:</p>
+                <pre class="bg-dark text-light p-3 rounded">
+# Clone the repository
+git clone https://github.com/yourusername/bookstore-api.git
+cd bookstore-api
+
+# Run the application with Maven Wrapper
+./mvnw spring-boot:run
+                </pre>
+                <p>The API will be available at <code>http://localhost:8000</code></p>
+                <p>Swagger UI: <code>http://localhost:8000/swagger-ui</code></p>
+                <p>H2 Console: <code>http://localhost:8000/h2-console</code> (JDBC URL: <code>jdbc:h2:mem:bookstoredb</code>, Username: <code>sa</code>, Password: <code>password</code>)</p>
             </div>
         </div>
         
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header">
                 <h2 class="card-title h5 mb-0">Available Endpoints</h2>
             </div>
@@ -66,136 +63,56 @@ HOME_TEMPLATE = '''
                 </table>
             </div>
         </div>
-    </div>
-    
-    <script>
-        // Periodically check API status
-        function checkApiStatus() {
-            fetch('/api-status')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('status-message').textContent = data.message;
-                })
-                .catch(err => {
-                    console.error('Error checking API status:', err);
-                });
-        }
         
-        // Check status every 5 seconds
-        setInterval(checkApiStatus, 5000);
-    </script>
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title h5 mb-0">Project Structure</h2>
+            </div>
+            <div class="card-body">
+                <pre class="bg-dark text-light p-3 rounded">
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── bookstore
+│   │   │           ├── controller
+│   │   │           │   └── BookController.java
+│   │   │           ├── exception
+│   │   │           │   ├── GlobalExceptionHandler.java
+│   │   │           │   └── ResourceNotFoundException.java
+│   │   │           ├── model
+│   │   │           │   └── Book.java
+│   │   │           ├── repository
+│   │   │           │   └── BookRepository.java
+│   │   │           ├── service
+│   │   │           │   ├── BookService.java
+│   │   │           │   └── BookServiceImpl.java
+│   │   │           └── BookstoreApplication.java
+│   │   └── resources
+│   │       ├── application.properties
+│   │       └── data.sql
+│   └── test
+│       └── java
+│           └── com
+│               └── bookstore
+│                   ├── controller
+│                   │   └── BookControllerTest.java
+│                   ├── repository
+│                   │   └── BookRepositoryTest.java
+│                   ├── service
+│                   │   └── BookServiceTest.java
+│                   └── BookstoreApplicationTests.java
+                </pre>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 '''
 
-def start_java_api():
-    global java_api_running, java_api_process
-    
-    try:
-        # Start the Java API in the workspace directory
-        java_api_process = subprocess.Popen(
-            ["./mvnw", "spring-boot:run"],
-            cwd="workspace",
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT
-        )
-        
-        # Wait for the API to start
-        time.sleep(30)
-        
-        # Check if the API is running
-        try:
-            response = requests.get("http://localhost:8000/api/books")
-            if response.status_code == 200:
-                java_api_running = True
-                print("Java API started successfully")
-            else:
-                print(f"Java API responded with status code {response.status_code}")
-        except requests.exceptions.ConnectionError:
-            print("Failed to connect to Java API")
-    except Exception as e:
-        print(f"Error starting Java API: {e}")
-
-# Start the Java API in a separate thread
-threading.Thread(target=start_java_api, daemon=True).start()
-
 @app.route('/')
 def home():
-    status_message = "Java API is running" if java_api_running else "Java API is starting up, please wait..."
-    return render_template_string(HOME_TEMPLATE, status_message=status_message)
-
-@app.route('/api-status')
-def api_status():
-    global java_api_running
-    
-    # Try to connect to the Java API
-    try:
-        response = requests.get("http://localhost:8000/api/books", timeout=1)
-        if response.status_code == 200:
-            java_api_running = True
-            message = "Java API is running. You can access the API endpoints and Swagger UI."
-        else:
-            message = f"Java API responded with status code {response.status_code}."
-    except requests.exceptions.RequestException:
-        java_api_running = False
-        message = "Java API is starting up, please wait..."
-    
-    return jsonify({
-        "status": "running" if java_api_running else "starting",
-        "message": message
-    })
-
-# Proxy routes to the Java API
-@app.route('/api/<path:path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
-def proxy_api(path):
-    if not java_api_running:
-        return jsonify({"error": "Java API is not running yet. Please wait."}), 503
-    
-    url = f"http://localhost:8000/api/{path}"
-    try:
-        resp = requests.request(
-            method=request.method,
-            url=url,
-            headers={key: value for key, value in request.headers if key != 'Host'},
-            params=request.args,
-            data=request.get_data(),
-            cookies=request.cookies,
-            allow_redirects=False,
-            timeout=5
-        )
-        
-        excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
-        headers = [(name, value) for name, value in resp.raw.headers.items()
-                  if name.lower() not in excluded_headers]
-        
-        return (resp.content, resp.status_code, headers)
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": f"Error connecting to Java API: {str(e)}"}), 503
-
-# Proxy routes for Swagger UI and H2 console
-@app.route('/<path:path>')
-def proxy_other(path):
-    if not java_api_running:
-        return jsonify({"error": "Java API is not running yet. Please wait."}), 503
-    
-    url = f"http://localhost:8000/{path}"
-    try:
-        resp = requests.get(
-            url=url,
-            headers={key: value for key, value in request.headers if key != 'Host'},
-            params=request.args,
-            cookies=request.cookies,
-            allow_redirects=False,
-            timeout=5
-        )
-        
-        excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
-        headers = [(name, value) for name, value in resp.raw.headers.items()
-                  if name.lower() not in excluded_headers]
-        
-        return (resp.content, resp.status_code, headers)
-    except requests.exceptions.RequestException:
-        return "Service is starting, please wait or refresh the page.", 503
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    """
+    Display documentation for the Bookstore API
+    """
+    return render_template_string(DOCS_TEMPLATE)
