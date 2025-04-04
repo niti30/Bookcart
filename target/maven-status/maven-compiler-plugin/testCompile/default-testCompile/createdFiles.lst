@@ -1,0 +1,4 @@
+com/bookstore/service/BookServiceTest.class
+com/bookstore/repository/BookRepositoryTest.class
+com/bookstore/controller/BookControllerTest.class
+com/bookstore/BookstoreApplicationTests.class

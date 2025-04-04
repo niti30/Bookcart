@@ -77,10 +77,9 @@ The book model includes the following fields:
 ## Getting Started
 
 ### Prerequisites
-- Python 3.7+
-- Flask
-- Flask-SQLAlchemy
-- PostgreSQL (or the database of your choice)
+- Java 21
+- Maven 3.8+
+
 
 ### Installation
 
@@ -90,9 +89,9 @@ git clone https://github.com/your-username/bookstore-api.git
 cd bookstore-api
 ```
 
-2. Install dependencies:
+2. Build the project:
 ```
-pip install -r requirements.txt
+mvn clean install
 ```
 
 3. Set the environment variables:
@@ -102,7 +101,8 @@ export DATABASE_URL=your_database_url
 
 4. Run the application:
 ```
-python main.py
+mvn spring-boot:run
+
 ```
 
 The API will be running at `http://localhost:5000`.
@@ -113,17 +113,17 @@ You can test the API using curl or Postman:
 
 ### Get all books:
 ```
-curl -X GET http://localhost:5000/api/books
+curl -X GET http://localhost:8080/api/books
 ```
 
 ### Get a specific book:
 ```
-curl -X GET http://localhost:5000/api/books/1
+curl -X GET http://localhost:8080/api/books/1
 ```
 
 ### Create a new book:
 ```
-curl -X POST http://localhost:5000/api/books \
+curl -X POST http://localhost:8080/api/books \
   -H "Content-Type: application/json" \
   -d '{
     "title": "New Book",
@@ -142,7 +142,7 @@ curl -X POST http://localhost:5000/api/books \
 
 ### Update a book:
 ```
-curl -X PUT http://localhost:5000/api/books/1 \
+curl -X PUT http://localhost:8080/api/books/1 \
   -H "Content-Type: application/json" \
   -d '{
     "price": 24.99,
@@ -152,7 +152,7 @@ curl -X PUT http://localhost:5000/api/books/1 \
 
 ### Delete a book:
 ```
-curl -X DELETE http://localhost:5000/api/books/1
+curl -X DELETE http://localhost:8080/api/books/1
 ```
 
 ## License
